@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('icon');
             $table->string('name');
-            $table->string('email');
+            $table->string('value');
             $table->text('message');
             $table->boolean('public');
             $table->unsignedBigInteger('createdBy')->nullable();
