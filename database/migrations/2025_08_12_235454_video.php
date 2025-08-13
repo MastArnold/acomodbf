@@ -11,7 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('video', function (Blueprint $table) {
+            $table->id();
+            $table->string('url');
+            $table->string('no');
+            $table->string('name'); 
+            $table->string('title'); 
+            $table->string('sub_title'); 
+            $table->text('description'); 
+            $table->string('category'); 
+            $table->boolean('public');
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->timestamps(); 
+
+            //FK
+            $table->foreign('createdBy')->references('id')->on('users');
+        });
     }
 
     /**
@@ -19,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('video');
     }
 };

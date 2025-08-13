@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('banner', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('sub_title');
+            $table->text('description');
+            $table->boolean('public');
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->timestamps();
+
+            //FK
+            $table->foreign('createdBy')->references('id')->on('users');
+        });
     }
 
     /**
@@ -19,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('banner');
     }
 };
